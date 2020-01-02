@@ -86,3 +86,21 @@ Open up the `qtcreator` program and create a new Project > Application > Qt Quic
 * Create the askForMoves method in the bind object
 
 
+## The next level: Compile to Web-Assembly
+
+```bash
+cd /path/to/emsdk
+cd /home/richi/emsdk
+./emsdk install sdk-fastcomp-1.38.27-64bit
+./emsdk activate --embedded sdk-fastcomp-1.38.27-64bit
+source ./emsdk_env.sh
+
+cd /path/to/ChessQml
+cd /richi/Src/ChessQml
+/path/to/Qt/5.14.0/wasm_32/bin/qmake
+/richi/Qt/5.14.0/wasm_32/bin/qmake ChessQml/
+make clean
+make
+
+emrun --browser=chrome ChessQml.html
+```

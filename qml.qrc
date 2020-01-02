@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Square.qml</file>
+        <file>CodeTranslate.js</file>
+        <file>ValidMoves.js</file>
+    </qresource>
+</RCC>

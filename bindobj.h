@@ -8,6 +8,10 @@
 class BindObj : public QObject
 {
     Q_OBJECT
+
+private:
+    void playComputerInThread();
+
 public:
     explicit BindObj(QObject *parent = nullptr);
     CBoard board{};
@@ -18,6 +22,9 @@ public slots:
     QVariantList askForMoves();
     bool makeMove(QString msg);
     void playComputer();
+
+signals:
+    void boardChanged();
 };
 
 

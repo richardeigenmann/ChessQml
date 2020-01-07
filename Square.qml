@@ -17,7 +17,7 @@ Rectangle {
         // row % 2 --> 0 or 1, add index and % 2 --> alternating pattern
         (((Math.floor(index / 8)) %2) + index) % 2 == 0 ? "white" : "grey"
     }
-    border.color: "black"
+    border.color: "lightblue"
     border.width: 0
 
     Text {

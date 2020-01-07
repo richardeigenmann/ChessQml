@@ -47,7 +47,18 @@ Window {
     function playComputer() {
         bindObject.playComputer();
         root.getBoard()
+        ValidMoves.validMoves = bindObject.askForMoves();
         myGameMode = "WaitingOnHuman"
+    }
+
+
+    Connections {
+            target: bindObject
+
+            onBoardChanged: {
+                console.log("Board Changed!");
+                getBoard();
+            }
     }
 
     Column {
@@ -64,7 +75,9 @@ Window {
                         myGameMode = "MoveTargetPicked"
                         moveTarget = coords
                         root.playMove()
-                        root.playComputer()
+                        if (myGameMode === "computerToPlay") {
+                            root.playComputer()
+                        }
                     }
                 }
                 gameMode: root.myGameMode

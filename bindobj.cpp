@@ -2,6 +2,7 @@
 #include <iostream>
 #include "stdlib.h"
 #include <sstream>
+#include <thread>
 
 BindObj::BindObj(QObject *parent) : QObject(parent), ai(board)
 {
@@ -53,13 +54,20 @@ bool BindObj::makeMove(QString msg)
         return false;
     }
     board.make_move(move);
+    emit boardChanged();
     return true;
 }
 
-void BindObj::playComputer()
+void BindObj::playComputerInThread()
 {
     CMove best_move = ai.find_best_move();
     std::cout << "bestmove " << best_move << std::endl;
     board.make_move(best_move);
+    emit boardChanged();
+}
+void BindObj::playComputer()
+{
+    std::thread t(&BindObj::playComputerInThread, this);
+    t.detach();
 }
 

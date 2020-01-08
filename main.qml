@@ -13,6 +13,8 @@ Window {
     property string myGameMode: "WaitingOnHuman"
     property string moveSource: ""
     property string moveTarget: ""
+    property bool whiteIsCheck: false
+    property bool blackIsCheck: false
 
     ListModel {
         id: chessBoard
@@ -40,8 +42,10 @@ Window {
             myGameMode = "WaitingOnHuman"
         }
         root.getBoard()
-        moveSource = "";
-        moveTarget = "";
+        moveSource = ""
+        moveTarget = ""
+        root.whiteIsCheck = bindObject.whiteIsCheck()
+        root.blackIsCheck = bindObject.blackIsCheck()
     }
 
     function playComputer() {
@@ -66,6 +70,8 @@ Window {
             id: squareDelegate
             Square{
                 code: chessCode
+                whiteIsCheck: root.whiteIsCheck
+                blackIsCheck: root.blackIsCheck
                 onSquareClicked: {
                     if ( myGameMode == "WaitingOnHuman" ) {
                         myGameMode = "MoveSourcePicked"

@@ -22,6 +22,8 @@ public slots:
     QVariantList askForMoves();
     bool makeMove(QString msg);
     void playComputer();
+    bool whiteIsCheck();
+    bool blackIsCheck();
 
 signals:
     void boardChanged();

@@ -71,3 +71,12 @@ void BindObj::playComputer()
     t.detach();
 }
 
+bool BindObj::whiteIsCheck()
+{
+    return board.whiteKingInCheck();
+}
+
+bool BindObj::blackIsCheck()
+{
+    return board.blackKingInCheck();
+}

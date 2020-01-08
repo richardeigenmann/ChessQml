@@ -865,6 +865,46 @@ bool CBoard::isKingInCheck() const
 
 } // end of isKingInCheck
 
+bool CBoard::whiteKingInCheck() const
+{
+    e_piece king = WK;
+    CSquare kingSquare = 0;
+
+    // Look for our king
+    for (int i=A1; i<=H8; ++i)
+    {
+        if (m_board[i] == king)
+        {
+            kingSquare = i;
+            break;
+        }
+    }
+
+    assert (kingSquare != 0); // The king MUST be somewhere
+
+    return isSquareThreatened(kingSquare);
+}
+
+bool CBoard::blackKingInCheck() const
+{
+    e_piece king = BK;
+    CSquare kingSquare = 0;
+
+    // Look for our king
+    for (int i=A1; i<=H8; ++i)
+    {
+        if (m_board[i] == king)
+        {
+            kingSquare = i;
+            break;
+        }
+    }
+
+    assert (kingSquare != 0); // The king MUST be somewhere
+
+    return isSquareThreatened(kingSquare);
+}
+
 
 /***************************************************************
  * Returns true if player NOT to move is in check.

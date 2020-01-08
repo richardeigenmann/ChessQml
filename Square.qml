@@ -8,14 +8,20 @@ Rectangle {
 
     property int code: 0
     property string gameMode: ""
+    property bool whiteIsCheck: false
+    property bool blackIsCheck: false
     signal squareClicked( string coords)
 
     width: 60
     height: width
     color: {
+        if (((code == 6) && whiteIsCheck) || ((code == -6) && blackIsCheck)) {
+            return "red"
+        }
+
         // row = Math.floor(index / 8)
         // row % 2 --> 0 or 1, add index and % 2 --> alternating pattern
-        (((Math.floor(index / 8)) %2) + index) % 2 == 0 ? "white" : "grey"
+        return (((Math.floor(index / 8)) %2) + index) % 2 == 0 ? "white" : "grey"
     }
     border.color: "lightblue"
     border.width: 0

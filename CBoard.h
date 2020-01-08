@@ -67,6 +67,8 @@ class CBoard
         bool IsMoveValid(CMove &move) const;
         bool isKingInCheck() const;
         bool isOtherKingInCheck() const;
+        bool whiteKingInCheck() const;
+        bool blackKingInCheck() const;
 
         friend std::ostream& operator <<(std::ostream &os, const CBoard &rhs);
         std::string getBoard();

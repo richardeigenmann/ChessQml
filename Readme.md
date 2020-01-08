@@ -86,6 +86,55 @@ Open up the `qtcreator` program and create a new Project > Application > Qt Quic
 * Create the askForMoves method in the bind object
 
 
+* To discover if the Kins are in check we need two new functions in the CBoard header and cpp file
+
+```cpp CBoard.h
+bool whiteKingInCheck() const;
+bool blackKingInCheck() const;
+```
+
+```cpp CBoard.cc
+bool CBoard::whiteKingInCheck() const
+{
+    e_piece king = WK;
+    CSquare kingSquare = 0;
+
+    // Look for our king
+    for (int i=A1; i<=H8; ++i)
+    {
+        if (m_board[i] == king)
+        {
+            kingSquare = i;
+            break;
+        }
+    }
+
+    assert (kingSquare != 0); // The king MUST be somewhere
+
+    return isSquareThreatened(kingSquare);
+}
+
+bool CBoard::blackKingInCheck() const
+{
+    e_piece king = BK;
+    CSquare kingSquare = 0;
+
+    // Look for our king
+    for (int i=A1; i<=H8; ++i)
+    {
+        if (m_board[i] == king)
+        {
+            kingSquare = i;
+            break;
+        }
+    }
+
+    assert (kingSquare != 0); // The king MUST be somewhere
+
+    return isSquareThreatened(kingSquare);
+}
+```
+
 ## The next level: Compile to Web-Assembly
 
 ```bash
